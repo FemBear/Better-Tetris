@@ -188,6 +188,7 @@ public class Game : MonoBehaviour
 
     public void GameOver()
     {
+        PlayerPrefs.SetInt("lastScore", FindObjectOfType<GameManager>().currentScore);
         SceneManager.LoadScene("GameOver");
     }
     public bool CheckIsInsideGrid(Vector2 pos)

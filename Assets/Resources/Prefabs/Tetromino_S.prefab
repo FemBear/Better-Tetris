@@ -390,7 +390,7 @@ MonoBehaviour:
   limitRotation: 1
   individualScore: 100
   individualScoreTime: 0
-  moveSound: {fileID: 8300000, guid: 8b0c48596b87d70419a0096a4824d74d, type: 3}
+  moveSound: {fileID: 8300000, guid: a08577eccdd50eb45aed0e9132bc7cc6, type: 3}
   rotateSound: {fileID: 8300000, guid: a9fc5a1da8fe4194c90b1fe1ed30ed75, type: 3}
   landSound: {fileID: 8300000, guid: 91a2e26849aa80d4299ffec757b448f7, type: 3}
 --- !u!82 &3801343377926383437

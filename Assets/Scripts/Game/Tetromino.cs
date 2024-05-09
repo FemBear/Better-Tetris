@@ -18,7 +18,7 @@ public class Tetromino : MonoBehaviour
     public AudioClip rotateSound;
     public AudioClip landSound;
 
-    public AudioSource audioSource;
+    private AudioSource audioSource;
 
     private float continuousVerticalSpeed = 0.05f;
     private float continuousHorizontalSpeed = 0.1f;
