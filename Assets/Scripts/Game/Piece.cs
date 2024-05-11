@@ -125,7 +125,7 @@ public class Piece : MonoBehaviour
 
     private void HardDrop()
     {
-        while (Move(Vector2Int.down)) {
+        while (Move(Vector2Int.down, true)) {
             continue;
         }
 
@@ -142,7 +142,7 @@ public class Piece : MonoBehaviour
         board.SpawnPiece();
     }
 
-    private bool Move(Vector2Int translation)
+    private bool Move(Vector2Int translation, bool isHardDrop = false)
     {
         Vector3Int newPosition = position;
         newPosition.x += translation.x;
@@ -156,11 +156,16 @@ public class Piece : MonoBehaviour
             position = newPosition;
             moveTime = Time.time + moveDelay;
             lockTime = 0f; // reset
-            PlayMoveSound();
+
+            if (!isHardDrop)
+            {
+                PlayMoveSound();
+            }
         }
 
         return valid;
     }
+
 
     private void Rotate(int direction)
     {
