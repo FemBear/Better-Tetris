@@ -5,6 +5,10 @@ public class SetScore : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
+    private void Awake()
+    {
+
+    }
     void Start()
     { 
         if(scoreText != null)
