@@ -14,6 +14,7 @@ public class Board : MonoBehaviour
     public Vector3Int spawnPosition = new Vector3Int(-1, 8, 0);
 
     public int totalScore = 0;
+    public int highScore;
     public int scorePerLine = 100;
 
     AudioSource audioSource;
@@ -21,6 +22,7 @@ public class Board : MonoBehaviour
     public AudioClip rowDeleteSound;
 
     public TextMeshProUGUI hud_score;
+    public TextMeshProUGUI hud_highScore;
 
     private GameObject previewTetromino;
     private TetrominoData previewPiece;
@@ -28,9 +30,9 @@ public class Board : MonoBehaviour
 
     private Vector2 prevPosition;
 
-    private bool hasBeenHeld = false;
-    private TetrominoData heldPiece;
-    private GameObject heldPieceGameObject;
+    //private bool hasBeenHeld = false;
+    //private TetrominoData heldPiece;
+    //private GameObject heldPieceGameObject;
 
 
     public RectInt Bounds
@@ -47,6 +49,8 @@ public class Board : MonoBehaviour
         tilemap = GetComponentInChildren<Tilemap>();
         activePiece = GetComponentInChildren<Piece>();
         audioSource = GetComponent<AudioSource>();
+        PlayerPrefs.SetInt("lastScore", 0);
+        highScore = PlayerPrefs.GetInt("highScore");
 
         for (int i = 0; i < tetrominoes.Length; i++)
         {
@@ -180,8 +184,21 @@ public class Board : MonoBehaviour
 
     public void AddScore(int linesCleared)
     {
-        totalScore += linesCleared * scorePerLine;
-        UpdateUI();
+        switch (linesCleared)
+        {
+            case 1:
+                totalScore += scorePerLine;
+                break;
+            case 2:
+                totalScore += scorePerLine * 3;
+                break;
+            case 3:
+                totalScore += scorePerLine * 5;
+                break;
+            case 4:
+                totalScore += scorePerLine * 8;
+                break;
+        }
     }
 
     public void LineClear(int row)
@@ -218,6 +235,7 @@ public class Board : MonoBehaviour
         {
             AddScore(linesCleared);
             playLineClearSound();
+            UpdateUI();
         }
     }
 
@@ -256,6 +274,7 @@ public class Board : MonoBehaviour
     public void GameOver()
     {
         PlayerPrefs.SetInt("lastScore", totalScore);
+        PlayerPrefs.SetInt("highScore", highScore);
         SceneManager.LoadScene("GameOver");
     }
     #endregion
@@ -263,7 +282,17 @@ public class Board : MonoBehaviour
     #region UI
     public void UpdateUI()
     {
-        hud_score.text = totalScore.ToString();
+        hud_score.text = "Score\n" + totalScore.ToString();
+        UpdateHighScore();
+        hud_highScore.text = "HighScore\n" + highScore.ToString();
+    }
+
+    private void UpdateHighScore()
+    {
+        if (totalScore > highScore)
+        {
+            highScore = totalScore;
+        }
     }
 
     #endregion

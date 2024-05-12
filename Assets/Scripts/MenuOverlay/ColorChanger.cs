@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ColorChanger : MonoBehaviour
 {
-    public TextMeshProUGUI text;
+    private TextMeshProUGUI text;
     public float duration = 2f;
     private Color[] rainbowColors;
     private int currentIndex = 0;
