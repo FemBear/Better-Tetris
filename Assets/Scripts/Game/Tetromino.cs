@@ -3,7 +3,13 @@ using UnityEngine.Tilemaps;
 
 public enum Tetromino
 {
-    I, J, L, O, S, T, Z
+    I,
+    J,
+    L,
+    O,
+    S,
+    T,
+    Z
 }
 
 [System.Serializable]
@@ -20,5 +26,4 @@ public struct TetrominoData
         cells = Data.Cells[tetromino];
         wallKicks = Data.WallKicks[tetromino];
     }
-
 }

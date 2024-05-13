@@ -94,7 +94,6 @@ public class Board : MonoBehaviour
         GenerateNextPiece();
     }
 
-
     public void Set(Piece piece)
     {
         for (int i = 0; i < piece.cells.Length; i++)
@@ -247,7 +246,7 @@ public class Board : MonoBehaviour
             Clear(previewTetromino.GetComponent<Piece>());
             Destroy(previewTetromino);
         }
-        
+
         //Create a new preview piece
         previewTetromino = new GameObject("Preview");
         previewTetromino.transform.position = prevPosition;
@@ -261,12 +260,12 @@ public class Board : MonoBehaviour
         Set(previewPiece);
         previewPiece.enabled = false;
     }
+
     //disable the held piece
     public void HoldPiece()
     {
         Debug.Log("Hold Piece");
     }
-
 
     #endregion
 
